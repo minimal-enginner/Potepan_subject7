@@ -1,25 +1,30 @@
  <%= render "shared/partial" %>
-<h3>予約の新規追加</h3>
+<h3>予約内容の確認</h3>
 
 <%= form_with model: @reservation do |f| %>
   <table>
     <tr>
-      <th><%= f.label :checkin ,"チェックイン日" %></th>
-      <td><%= f.date_field :checkin %></td>
+      <th><%= f.label :checkin ,"チェックイン" %></th>
+      <td><%= @reservation.checkin %></td>
     </tr>
 
     <tr>
-      <th><%= f.label :checkout ,"チェックアウト日" %></th>
-      <td><%= f.date_field :checkout %></td>
+      <th><%= f.label :checkin ,"チェックアウト" %></th>
+      <td><%= @reservation.checkout %></td>
     </tr>
 
     <tr>
       <th><%= f.label :person ,"人数" %></th>
-      <td><%= f.text_field :person %></td>
+      <td><%= @reservation.person %></td>
     </tr>
+
+    <tr>
+      <th><%= f.label :price ,"お支払い金額" %></th>
+      <%# <%= @room.room_price_day * person %>
+    </tr>
+
          <%= f.hidden_field :user_id, value: @user.id %>
          <%= f.hidden_field :room_id, value: @room.id %>
-         
   </table>
 
  <% if flash[:notice_no_create] %>

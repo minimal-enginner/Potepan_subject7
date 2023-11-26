@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :rememberable, :validatable
 
   validates :name, presence: true
+  validates :profile, length: { maximum: 200 }
+
+  has_many :users
+  has_many :reservations
 end

@@ -6,10 +6,20 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
+    @user = current_user
+    @room = Room.new
+  end
+
+  def confirm
+    @reservation = Reservation.new
+    @user = current_user
+    @room = Room.new
   end
 
   def create
     @reservation = Reservation.new(reservation_params)
+    @user = current_user
+    @room = Room.new(room_params)
     if @reservation.save
       flash[:notice_create] = "予約情報を登録しました"
       redirect_to :reservations

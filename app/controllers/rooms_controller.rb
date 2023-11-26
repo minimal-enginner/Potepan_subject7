@@ -22,6 +22,7 @@ class RoomsController < ApplicationController
 
   def show
     @room = Room.find(params[:id])
+    @user = current_user
   end
 
   def edit
@@ -48,6 +49,6 @@ class RoomsController < ApplicationController
 
   private
   def room_params  # プライベートメソッド 
-    params.require(:room).permit(:room_name, :room_content, :room_price_day, :room_address)
+    params.require(:room).permit(:room_name, :room_content, :room_price_day, :room_address, :user_id)
   end
 end
