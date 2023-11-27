@@ -2,18 +2,20 @@ class ReservationsController < ApplicationController
   def index
     @reservations = Reservation.all
     @rooms = Room.all
+    @user = current_user
   end
 
   def new
-    @reservation = Reservation.new
+    @reservation = Reservation.new(reservation_params)
     @user = current_user
     @room = Room.new
   end
 
   def confirm
-    @reservation = Reservation.new(reservation_params)
+    @reservation = Reservation.new
     @user = current_user
-    @room = Room.new(room_params)
+    @room = Room.new
+    pp @reservation
   end
 
   def create

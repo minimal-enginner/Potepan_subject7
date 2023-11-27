@@ -1,5 +1,7 @@
+ <%= render "shared/partial" %>
+
 <h2>エリア名を入力</h2>
-<%= form_tag(root_path, method: :get) do %>
+<%= form_tag('/search', method: :get) do %>
   <%= text_field_tag :search %>
   <%= submit_tag 'Search', name: nil %>
 <% end %>

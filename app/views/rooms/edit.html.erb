@@ -1,6 +1,6 @@
  <%= render "shared/partial" %>
 
-<h3>予定の編集</h3>
+<h3>施設情報の編集</h3>
 
 <%= form_with model: @room do |f| %>
 <table>
@@ -22,6 +22,11 @@
     <tr>
       <th><%= f.label :room_address ,"住所" %></th>
       <td><%= f.text_field :room_address %></td>
+    </tr>
+
+    <tr>
+      <th><%= f.label :room_image ,"施設画像"  %></th>
+      <td><%= f.file_field :room_image %></td>
     </tr>
   </table>
 

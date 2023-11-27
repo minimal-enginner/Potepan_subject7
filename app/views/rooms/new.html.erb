@@ -1,25 +1,26 @@
+ <%= render "shared/partial" %>
 <h3>施設の新規追加</h3>
 
 <%= form_with model: @room do |f| %>
   <table>
     <tr>
       <th><%= f.label :room_name ,"施設名" %></th>
-      <td><%= f.text_field :room_name %></td>
+      <td><%= f.text_field :room_name, placeholder: 'ルーム名を入力' %></td>
     </tr>
 
     <tr>
       <th><%= f.label :room_content ,"施設詳細" %></th>
-      <td><%= f.text_field :room_content %></td>
+      <td><%= f.text_field :room_content, placeholder: '施設詳細を入力' %></td>
     </tr>
 
     <tr>
       <th><%= f.label :room_price_day ,"料金" %></th>
-      <td><%= f.text_field :room_price_day %></td>
+      <td><%= f.text_field :room_price_day, placeholder: '一日あたりの料金を入力' %></td>
     </tr>
 
     <tr>
       <th><%= f.label :room_address ,"住所" %></th>
-      <td><%= f.text_field :room_address %></td>
+      <td><%= f.text_field :room_address, placeholder: '住所を入力' %></td>
     </tr>
      <%= f.hidden_field :user_id, value: @user.id %>
   </table>

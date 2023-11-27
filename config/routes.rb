@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get "users/profile" => "users#show"
-  get "users/profile/edit" => "users#edit"
+  resources :profiles, only: [:show,:edit,:update]
+  #  get "users/profile" => "users#show"
+  #  get "users/profile/edit" => "users#edit"
   get "/search", to: "searches#search"
-  root to: "searches#search"
+  root to: "searches#top"
   resources :rooms
   resources :reservations
   post '/rooms/:id', to: 'reservations#confirm'

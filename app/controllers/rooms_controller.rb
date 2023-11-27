@@ -1,6 +1,7 @@
 class RoomsController < ApplicationController
   def index
     @rooms = Room.all
+    @user = current_user
   end
 
   def new
@@ -27,6 +28,7 @@ class RoomsController < ApplicationController
 
   def edit
     @room = Room.find(params[:id])
+    @user = current_user
   end
 
   def update
@@ -49,6 +51,6 @@ class RoomsController < ApplicationController
 
   private
   def room_params  # プライベートメソッド 
-    params.require(:room).permit(:room_name, :room_content, :room_price_day, :room_address, :user_id)
+    params.require(:room).permit(:room_name, :room_content, :room_price_day, :room_address, :user_id, :room_image)
   end
 end

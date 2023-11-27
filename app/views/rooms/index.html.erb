@@ -21,7 +21,7 @@
   <tbody>
     <% @rooms.each do |room| %>
       <tr>
-        <td>画像</td>
+        <td><img src=<%= room.room_image %> class = "room_image"></td>
         <td><%= link_to "#{room.room_name}", room %></td>
         <td><%= room.room_content %></td>
         <td><%= room.room_price_day %></td>
