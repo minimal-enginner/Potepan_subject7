@@ -1,8 +1,8 @@
 .icon_image {
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     //サイズ指定
-    border-radius: 100px;
+    border-radius: 200px;
     //画像を丸くする
     object-fit: cover;
     //タテヨコ比を変えないままトリミング
@@ -12,8 +12,6 @@
     width: 200px;
     height: 200px;
     //サイズ指定
-    border-radius: 100px;
-    //画像を丸くする
     object-fit: cover;
     //タテヨコ比を変えないままトリミング
   }

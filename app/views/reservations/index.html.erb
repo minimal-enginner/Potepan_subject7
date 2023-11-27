@@ -22,7 +22,13 @@
   <tbody>
     <% @reservations.each do |f| %>
       <tr>
-        <td><img src=<%= @rooms.find(f.room_id).room_image %> class = "icon_image"></td>
+        <td>
+          <% if @rooms.find(f.room_id).room_image != nil%>
+            <img src=<%= @rooms.find(f.room_id).room_image %> class = "room_image">
+          <% else %>
+            <img src=travel/public/uploads/room/room_image/default-room_image.png class = "room_image">
+          <% end %>
+          </td>
         <td><%= link_to "#{@rooms.find(f.room_id).room_name}", @rooms.find(f.room_id) %></td>
         <td><%= @rooms.find(f.room_id).room_content %></td>
         <td><%= f.sum_of_price %>円</td>

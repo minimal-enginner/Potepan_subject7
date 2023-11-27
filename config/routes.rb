@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   post '/rooms/:id', to: 'reservations#confirm'
   devise_for :users, module: "users"
+  get "users/show" => "users#show"
   # devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

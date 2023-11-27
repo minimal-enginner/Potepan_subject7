@@ -11,6 +11,7 @@
 <table>
   <thead>
     <tr>
+      <th>画像</th>
       <th>施設名</th>
       <th>住所</th>
       <th>施設詳細</th>
@@ -21,6 +22,13 @@
 
   <% @rooms.each do |f| %>
   <tbody>
+    <td>
+          <% if f.room_image != nil%>
+            <img src=<%= f.room_image %> class = "room_image">
+          <% else %>
+            <img src=travel/public/uploads/room/room_image/default-room_image.png class = "room_image">
+          <% end %>
+    </td>
     <td><%= f.room_name %></td>
     <td><%= f.room_address %></td>
     <td><%= f.room_content %></td>
