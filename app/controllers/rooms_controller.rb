@@ -50,8 +50,8 @@ class RoomsController < ApplicationController
     redirect_to :rooms
   end
 
-  # private
-  # def room_params  # プライベートメソッド 
-  #   params.require(:room).permit(:room_name, :room_content, :room_price_day, :room_address, :room_image, :user_id, :room_id)
-  # end
+   private
+   def room_params  # プライベートメソッド 
+     params.require(:room).permit(:room_name, :room_content, :room_price_day, :room_address, :room_image, :user_id, :room_id)
+   end
 end

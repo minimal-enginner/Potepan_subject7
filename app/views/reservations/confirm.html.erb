@@ -29,6 +29,7 @@
   <%= f.hidden_field :person ,value: @reservation.person %>
   <%= f.hidden_field :user_id, value: @user.id %>
   <%= f.hidden_field :room_id, value: @reservation.room_id %>
+  <%= f.hidden_field :sum_of_price, value: @sum_of_price %>
 
  <% if flash[:notice_no_create] %>
    <p class="notice"><%= flash[:notice_no_create] %></p>
