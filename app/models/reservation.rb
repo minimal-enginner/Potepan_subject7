@@ -6,6 +6,7 @@ class Reservation < ApplicationRecord
     validate :start_end_check
     belongs_to :user
     belongs_to :room
+    mount_uploader :room_image, RoomImageUploader
 end
 
 def date_before_start

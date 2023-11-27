@@ -22,9 +22,9 @@
   <tbody>
     <% @reservations.each do |f| %>
       <tr>
-        <td>画像</td>
-        <td><%= "施設名" %></td>
-        <td><%= "紹介文" %></td>
+        <td><img src=<%= @rooms.find(f.room_id).room_image %> class = "icon_image"></td>
+        <td><%= @rooms.find(f.room_id).room_name %></td>
+        <td><%= @rooms.find(f.room_id).room_content %></td>
         <td><%= "合計料金" %></td>
         <td><%= f.checkin %></td>
         <td><%= f.checkout %></td>

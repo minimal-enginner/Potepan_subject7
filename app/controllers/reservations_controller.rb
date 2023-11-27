@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all
     @rooms = Room.all
     @user = current_user
+    pp @rooms
   end
 
   def new
@@ -12,16 +13,20 @@ class ReservationsController < ApplicationController
   end
 
   def confirm
-    @reservation = Reservation.new
+    @reservation = Reservation.new(reservation_params)
     @user = current_user
-    @room = Room.new
+    @room = Room.all
+    pp @sum_of_price
+    pp @room
     pp @reservation
+    @price = @room.find(@reservation.room_id).room_price_day
+    @sum_of_price = @price * @reservation.person
   end
 
   def create
     @reservation = Reservation.new(reservation_params)
     @user = current_user
-        @room = Room.new(room_params)
+    @room = Room.new
     if @reservation.save
       flash[:notice_create] = "予約情報を登録しました"
       redirect_to :reservations
@@ -32,14 +37,19 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @reservation = Reservation.find(params[:id])
+
   end
 
   def edit
+    @user = current_user
     @reservation = Reservation.find(params[:id])
+    @room = Room.find(params[:id])
   end
 
   def update
+    @user = current_user
     @reservation = Reservation.find(params[:id])
     if @reservation.update(reservation_params)
       flash[:notice_update] = "予約情報を更新しました"
@@ -51,14 +61,15 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
+    @user = current_user
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
     flash[:notice_destroy] = "予約情報を削除しました"
     redirect_to :reservations
   end
 
-  private
-  def reservation_params  # プライベートメソッド 
-    params.require(:reservation).permit(:checkin, :checkout, :person)
-  end
+   private
+   def reservation_params  # プライベートメソッド 
+     params.require(:reservation).permit(:checkin, :checkout, :person, :user_id, :room_id, :room_name)
+   end
 end

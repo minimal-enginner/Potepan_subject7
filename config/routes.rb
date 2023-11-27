@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   resources :profiles, only: [:show,:edit,:update]
-  #  get "users/profile" => "users#show"
-  #  get "users/profile/edit" => "users#edit"
   get "/search", to: "searches#search"
   root to: "searches#top"
   resources :rooms
-  resources :reservations
+  resources :reservations, only: [:index, :new, :confirm, :create, :show, :edit, :update, :destroy] do
+    collection do
+      post :confirm
+    end
+  end
   post '/rooms/:id', to: 'reservations#confirm'
   devise_for :users, module: "users"
   # devise_for :users
