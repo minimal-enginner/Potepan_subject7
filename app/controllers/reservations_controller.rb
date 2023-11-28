@@ -3,7 +3,6 @@ class ReservationsController < ApplicationController
     @reservations = Reservation.all
     @rooms = Room.all
     @user = current_user
-    pp @rooms
   end
 
   def new
@@ -16,9 +15,6 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new(reservation_params)
     @user = current_user
     @room = Room.all
-    pp @sum_of_price
-    pp @room
-    pp @reservation
     @price = @room.find(@reservation.room_id).room_price_day
     @sum_of_price = @price * @reservation.person
   end
