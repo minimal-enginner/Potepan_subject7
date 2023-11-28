@@ -16,7 +16,16 @@ class ReservationsController < ApplicationController
     @user = current_user
     @room = Room.all
     @price = @room.find(@reservation.room_id).room_price_day
-    @sum_of_price = @price * @reservation.person
+    if @reservation.person.present? {
+      @sum_of_price = @price * @reservation.person}
+    end
+    if @reservation.save
+      flash[:notice_create] = "予約情報を登録しました"
+      redirect_to :reservations
+    else
+      flash[:notice_no_create] = "予約情報の登録に失敗しました"
+      redirect_to controller: :rooms, action: :show, id: @reservation.room_id
+    end
   end
 
   def create
