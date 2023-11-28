@@ -1,6 +1,10 @@
  <%= render "shared/partial" %>
 <h3>予約内容の確認</h3>
-
+<% if @room.find(@reservation.room_id).room_image.present? %>
+  <img src=<%= @room.find(@reservation.room_id).room_image %> class = "room_image">
+<% else %>
+  <img src="/default-room_image.png" class = "room_image">
+<% end %>
 <%= form_with model: @reservation do |f| %>
   <table>
     <tr>

@@ -4,6 +4,11 @@
 
 <%= link_to "編集", edit_room_path(@room.id) %>
 <%= form_with model: @room do |f| %>
+          <% if @room.room_image.present? %>
+            <img src=<%= @room.room_image %> class = "room_image">
+          <% else %>
+            <img src="/default-room_image.png" class = "room_image">
+          <% end %>
 <table>
     <tr>
       <th><%= f.label :room_name ,"施設名" %></th>
