@@ -34,7 +34,7 @@
             <img src=/default-room_image.png class = "room_image">
           <% end %>
     </td>
-    <td><%= link_to "#{f.room_name}", f.room_name %></td>
+    <td><%= link_to "#{f.room_name}", "/rooms/#{f.id}" %></td>
     <td><%= f.room_address %></td>
     <td><%= f.room_content %></td>
     <td><%= f.room_price_day %></td>
