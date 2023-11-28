@@ -3,7 +3,7 @@
 <h2>Potepan Shareで
 まだ体験したことのない
 旅をしよう</h2>
-<%= form_tag(root_path, method: :get) do %>
+<%= form_tag('/search', method: :get) do %>
   <%= text_field_tag 'search', nil, placeholder: 'エリア名を入力' %>
   <%= submit_tag '検索', name: nil %>
 <% end %>
