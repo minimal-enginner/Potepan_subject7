@@ -42,7 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
    # プロフィール編集後にマイページへリダイレクト
    def after_update_path_for(resource)
-    edit_user_registration_path
+    profile_path(current_user.id)
    end
 
    # 更新（編集の反映）時にパスワード入力を省く

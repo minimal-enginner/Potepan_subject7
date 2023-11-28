@@ -28,7 +28,7 @@ class ReservationsController < ApplicationController
       redirect_to :reservations
     else
       flash[:notice_no_create] = "予約情報の登録に失敗しました"
-      render "new"
+      redirect_to controller: :rooms, action: :show, id: @reservation.room_id
     end
   end
 
