@@ -22,10 +22,10 @@
     <% @rooms.each do |room| %>
       <tr>
         <td>
-          <% if room.room_image != nil%>
+          <% if room.room_image.present? %>
             <img src=<%= room.room_image %> class = "room_image">
           <% else %>
-            <img src=travel/public/uploads/room/room_image/default-room_image.png class = "room_image">
+            <img src="/default-room_image.png" class = "room_image">
           <% end %>
         </td>
         <td><%= link_to "#{room.room_name}", room %></td>

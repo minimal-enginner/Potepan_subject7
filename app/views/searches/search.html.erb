@@ -6,6 +6,11 @@
   <%= submit_tag 'Search', name: nil %>
 <% end %>
 
+<%= form_tag('/keyword_search', method: :get) do %>
+  <%= text_field_tag :keyword_search %>
+  <%= submit_tag 'keyword_search', name: nil %>
+<% end %>
+
 <span><%= @rooms.count %>件見つかりました。</span>
 
 <table>
@@ -23,10 +28,10 @@
   <% @rooms.each do |f| %>
   <tbody>
     <td>
-          <% if f.room_image != nil%>
+          <% if f.room_image.present? %>
             <img src=<%= f.room_image %> class = "room_image">
           <% else %>
-            <img src=travel/public/uploads/room/room_image/default-room_image.png class = "room_image">
+            <img src=/default-room_image.png class = "room_image">
           <% end %>
     </td>
     <td><%= f.room_name %></td>

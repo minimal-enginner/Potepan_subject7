@@ -2,10 +2,10 @@
     <header>
         <h4><%= link_to "宿泊予約アプリ", root_path %></h4>
       <% if user_signed_in? %>
-      <% if @user.image != nil%>
+      <% if @user.image.present? %>
       <img src=<%= @user.image %> class = "icon_image">
       <% else %>
-      <img src=travel/public/uploads/user/image/default-user_image.png class = "icon_image">
+      <img src=/default-user_image.png class = "icon_image">
       <% end %>
           <%= link_to "施設の新規登録", new_room_path %>
           <%= link_to "予約済み一覧", reservations_path %>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :profiles, only: [:show,:edit,:update]
   get "/search", to: "searches#search"
+  get "/keyword_search", to: "searches#keyword_search"
   root to: "searches#top"
   resources :rooms
   resources :reservations, only: [:index, :new, :confirm, :create, :show, :edit, :update, :destroy] do
