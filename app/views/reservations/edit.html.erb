@@ -1,7 +1,13 @@
  <%= render "shared/partial" %>
 
 <h3>再予約する</h3>
+
 <%= form_with model: @reservation, url:confirm_reservations_path , local: true do |f| %>
+          <% if @rooms.find(@reservation.room_id).room_image.present? %>
+            <img src=<%= @rooms.find(@reservation.room_id).room_image %> class = "room_image">
+          <% else %>
+            <img src=/default-room_image.png class = "room_image">
+          <% end %>
   <table>
     <tr>
       <th><%= f.label :checkin ,"チェックイン日" %></th>
@@ -18,7 +24,7 @@
       <td><%= f.text_field :person %></td>
     </tr>
       <%= f.hidden_field :user_id, value: @user.id %>
-      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.hidden_field :room_id, value: @reservation.room_id %>
   </table>
 
  <% if flash[:notice_no_create] %>
@@ -32,10 +38,9 @@
     </ul>
   </div>
 
-<% end %>
-
  <% if flash[:notice_no_update] %>
    <p class="notice"><%= flash[:notice_no_update] %></p>
  <% end %>
 
  <%= render "shared/error", obj: @reservation %> 
+ <% end %>

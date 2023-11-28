@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   get "/keyword_search", to: "searches#keyword_search"
   root to: "searches#top"
   resources :rooms
-  resources :reservations, only: [:index, :new, :confirm, :create, :show, :edit, :update, :destroy] do
+  resources :reservations, only: [:index, :new, :confirm, :create, :show, :edit, :destroy] do
     collection do
       post :confirm
+      patch :confirm
     end
   end
   post '/rooms/:id', to: 'reservations#confirm'

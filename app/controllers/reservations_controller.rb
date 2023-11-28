@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @reservation = Reservation.new(reservation_params)
+    @reservation = Reservation.new
     @user = current_user
     @room = Room.new
   end
@@ -46,13 +46,11 @@ class ReservationsController < ApplicationController
   def edit
     @user = current_user
     @reservation = Reservation.find(params[:id])
-    @room = Room.find(params[:id])
+    @rooms = Room.all
   end
 
   def update
-    @user = current_user
-    @reservation = Reservation.find(params[:id])
-    if @reservation.update(reservation_params)
+    if @reservation.update
       flash[:notice_update] = "予約情報を更新しました"
       redirect_to :reservations
     else
