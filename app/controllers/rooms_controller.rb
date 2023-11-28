@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
       redirect_to :rooms
     else
       flash[:notice_no_create] = "施設情報の登録に失敗しました"
-      render "new"
+      redirect_to '/rooms/new'
     end
   end
 
