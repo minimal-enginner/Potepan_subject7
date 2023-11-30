@@ -69,6 +69,6 @@ class ReservationsController < ApplicationController
 
    private
    def reservation_params  # プライベートメソッド 
-     params.require(:reservation).permit(:checkin, :checkout, :person, :user_id, :room_id, :room_name, :sum_of_price)
+     params.permit(:checkin, :checkout, :person, :user_id, :room_id, :room_name, :sum_of_price)
    end
 end
