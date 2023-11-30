@@ -1,0 +1,44 @@
+<div class="partial">
+    <header>
+        <h4><%= link_to "宿泊予約アプリ", root_path %></h4>
+      <% if user_signed_in? %>
+    <div class="dropdown">
+    <div class="dropdown__btn" id="dropdown__btn">
+    <div>
+      <% if @user.image.present? %>
+      <img src=<%= @user.image %> class = "icon_image">
+      <% else %>
+      <img src=/default-user_image.png class = "icon_image">
+      <% end %>
+      <%= current_user.name %>
+    </div>
+  </div>
+  <div class="dropdown__body">
+    <ul class="dropdown__list">
+      <li class="dropdown__item"><%= link_to "施設の新規登録", new_room_path %></li>
+      <li class="dropdown__item"><%= link_to "予約済み一覧", reservations_path %></li>
+      <li class="dropdown__item"><%= link_to "登録済み一覧", rooms_path %></li>
+      <li class="dropdown__item"><%= link_to "アカウント設定", users_show_path %></li>
+      <li class="dropdown__item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </div>
+</div>
+      <% else %>
+          <%= link_to "新規登録", new_user_registration_path %>
+          <%= link_to "ログイン", new_user_session_path %>
+      <% end %>
+    </header>
+</div>
+
+<script>
+    (function () {
+  document.addEventListener('DOMContentLoaded', function() { 
+    const btn = document.getElementById('dropdown__btn');
+    if(btn) { 
+      btn.addEventListener('click', function(){ 
+        this.classList.toggle('is-open');
+      });
+    }
+  });
+}());
+</script>

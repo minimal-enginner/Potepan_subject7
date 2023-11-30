@@ -1,0 +1,57 @@
+ <%= render "shared/partial" %>
+<div style="display: flex;justify-content: space-between">
+<h3>予約済み一覧</h3>
+</div>
+
+ <% if flash[:notice_create] %>
+   <p class="notice"><%= flash[:notice_create] %></p>
+ <% end %>
+
+ <% if flash[:notice_update] %>
+   <p class="notice"><%= flash[:notice_update] %></p>
+ <% end %>
+
+ <% if flash[:notice_destroy] %>
+   <p class="notice"><%= flash[:notice_destroy] %></p>
+ <% end %>
+
+<div>
+<table>
+  <thead>
+    <tr>
+      <th>画像</th>
+      <th>施設名</th>
+      <th>紹介文</th>
+      <th>合計料金</th>
+      <th>チェックイン</th>
+      <th>チェックアウト</th>
+      <th>予約確定日時</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reservations.each do |f| %>
+      <tr>
+        <td>
+          <% if @rooms.find(f.room_id).room_image.present? %>
+            <img src=<%= @rooms.find(f.room_id).room_image %> class = "room_image">
+          <% else %>
+            <img src=/default-room_image.png class = "room_image">
+          <% end %>
+          </td>
+        <td><%= link_to "#{@rooms.find(f.room_id).room_name}", @rooms.find(f.room_id) %></td>
+        <td><%= @rooms.find(f.room_id).room_content %></td>
+        <td><%= f.sum_of_price %>円</td>
+        <td><%= l f.checkin %></td>
+        <td><%= l f.checkout %></td>
+        <td><%= l f.updated_at, format: :time %></td>
+        <td><%= link_to "編集", [:edit, f] %></td>
+        <td><%= link_to "削除", f, method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>
