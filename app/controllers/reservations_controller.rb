@@ -26,14 +26,16 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservation_params)
+    pp  @reservation
     @user = current_user
-    @room = Room.new
+    @room = Room.where(id: @reservation.room_id)
+    pp  @room
     if @reservation.save
       flash[:notice_create] = "予約情報を登録しました"
       redirect_to :reservations
     else
       flash[:notice_no_create] = "予約情報の登録に失敗しました"
-      redirect_to controller: :rooms, action: :show, id: @reservation.room_id
+      redirect_to controller: :rooms, action: :show, id: '4'
     end
   end
 
@@ -47,6 +49,7 @@ class ReservationsController < ApplicationController
     @user = current_user
     @reservation = Reservation.find(params[:id])
     @rooms = Room.all
+    pp @rooms
   end
 
   def update

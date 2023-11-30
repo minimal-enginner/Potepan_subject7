@@ -2,7 +2,8 @@
 
 <h3>再予約する</h3>
 
-<%= form_with model: @reservation, url:confirm_reservations_path , local: true do |f| %>
+<%= form_with(url:confirm_reservations_path, method: :get) do |f| %>
+<%# <%= form_with model: @reservation, url:confirm_reservations_path , local: true do |f| %>
           <% if @rooms.find(@reservation.room_id).room_image.present? %>
             <img src=<%= @rooms.find(@reservation.room_id).room_image %> class = "room_image">
           <% else %>

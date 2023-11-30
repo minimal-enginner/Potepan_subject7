@@ -3,6 +3,18 @@
 <h3>予約済み一覧</h3>
 </div>
 
+ <% if flash[:notice_create] %>
+   <p class="notice"><%= flash[:notice_create] %></p>
+ <% end %>
+
+ <% if flash[:notice_update] %>
+   <p class="notice"><%= flash[:notice_update] %></p>
+ <% end %>
+
+ <% if flash[:notice_destroy] %>
+   <p class="notice"><%= flash[:notice_destroy] %></p>
+ <% end %>
+
 <div>
 <table>
   <thead>
@@ -41,17 +53,5 @@
     <% end %>
   </tbody>
 </table>
-
- <% if flash[:notice_create] %>
-   <p class="notice"><%= flash[:notice_create] %></p>
- <% end %>
-
- <% if flash[:notice_update] %>
-   <p class="notice"><%= flash[:notice_update] %></p>
- <% end %>
-
- <% if flash[:notice_destroy] %>
-   <p class="notice"><%= flash[:notice_destroy] %></p>
- <% end %>
 
 </div>
