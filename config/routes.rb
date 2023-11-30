@@ -3,12 +3,17 @@ Rails.application.routes.draw do
   get "/search", to: "searches#search"
   get "/keyword_search", to: "searches#keyword_search"
   get "/reservations/confirm", to: "reservations#confirm"
+  get "/reservations/:id/edit_confirm", to: "reservations#edit_confirm"
   root to: "searches#top"
   resources :rooms
-  resources :reservations, only: [:index, :new, :confirm, :create, :show, :edit, :destroy] do
+  resources :reservations, only: [:index, :new, :confirm, :create, :show, :edit, :destroy, :update] do
     collection do
       post :confirm
-      patch :confirm
+      # patch :confirm
+    end
+    member do
+      # post :edit_confirm
+      patch :edit_confirm
     end
   end
   post '/rooms/:id', to: 'reservations#confirm'

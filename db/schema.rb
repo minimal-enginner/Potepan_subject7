@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_27_095931) do
+ActiveRecord::Schema.define(version: 2023_11_30_142400) do
 
   create_table "reservations", force: :cascade do |t|
     t.date "checkin"
@@ -21,18 +21,11 @@ ActiveRecord::Schema.define(version: 2023_11_27_095931) do
     t.integer "user_id"
     t.integer "room_id"
     t.integer "sum_of_price"
-  end
-
-  create_table "rooms", force: :cascade do |t|
-    t.string "room_name"
-    t.string "room_content"
-    t.integer "room_price_day"
-    t.string "room_address"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
     t.string "room_image"
   end
+
+# Could not dump table "rooms" because of following StandardError
+#   Unknown type 'image' for column 'room_image'
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -43,8 +36,10 @@ ActiveRecord::Schema.define(version: 2023_11_27_095931) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
     t.string "profile"
-    t.index "\"reset_password_token\"", name: "index_users_on_reset_password_token", unique: true
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

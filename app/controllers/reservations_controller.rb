@@ -50,10 +50,28 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.find(params[:id])
     @rooms = Room.all
     pp @rooms
+    pp @reservation
+  end
+
+  def edit_confirm
+    @reservation = Reservation.new(reservation_params)
+    pp @reservation
+    @user = current_user
+    @room = Room.all
+    @price = @room.find(@reservation.room_id).room_price_day
+    if @reservation.person.nil? == true || @reservation.checkin.nil? ==true || @reservation.checkout.nil? == true
+    flash[:notice_no_create] = "予約情報の登録に失敗しました"
+    redirect_to controller: :rooms, action: :show, id: @reservation.room_id
+    else 
+      @sum_of_price = @price * @reservation.person
+    end
   end
 
   def update
-    if @reservation.update
+    @reservation = Reservation.find(params[:id])
+    pp @reservation
+    pp reservation_params
+    if @reservation.update(reservation_params)
       flash[:notice_update] = "予約情報を更新しました"
       redirect_to :reservations
     else
@@ -72,6 +90,6 @@ class ReservationsController < ApplicationController
 
    private
    def reservation_params  # プライベートメソッド 
-     params.permit(:checkin, :checkout, :person, :user_id, :room_id, :room_name, :sum_of_price)
+     params.permit(:id, :checkin, :checkout, :person, :user_id, :room_id, :room_name, :sum_of_price)
    end
 end
